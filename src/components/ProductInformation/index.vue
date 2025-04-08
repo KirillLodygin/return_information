@@ -1,111 +1,110 @@
 <template>
-  <div class="info-cell">
-    <div class="info-cell__content">
-      <div class="info-cell__number-line">
-        <div class="info-cell__number">{{ number }}</div>
-        <div class="info-cell__icon" aria-hidden="true"></div>
+  <div class="information-block">
+    <div class="information-block__container">
+      <div class="information-block__header">
+        <template v-if="isMaxDesktop">
+          <p class="information-block__header-line">Какой товар</p>
+          <p class="information-block__header-line">можно вернуть</p>
+        </template>
+        <p v-else class="information-block__header-line">Какой товар можно вернуть</p>
       </div>
-      <div class="info-cell__description">{{ description }}</div>
-      <div class="info-cell__term">{{ term }}</div>
+      <div class="information-block__cells">
+        <InfoCell
+            v-for="cell in GOODS"
+            :key="cell.number"
+            :number="cell.number"
+            :description="cell.description"
+            :term="cell.term"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-interface Props {
-  number: string
-  description: string
-  term: string
-}
+import { GOODS } from '@/constants/projectInfo'
+import InfoCell from './InfoCell.vue'
 
-defineProps<Props>()
+import useBreakpoints from '@/composables/useBreakpoints'
+
+const { isMaxDesktop } = useBreakpoints()
 </script>
 
 <style scoped>
-.info-cell {
-  width: min(282px, 100%);
-  border-radius: 12px;
-  padding: 16px;
-  background-color: #f0f9ff;
-  box-sizing: border-box;
-}
-
-.info-cell__content {
-  display: flex;
-  flex-direction: column;
-  color: #0f172a;
-  height: 100%;
-}
-
-.info-cell__number-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  gap: 8px;
-}
-
-.info-cell__number {
-  font-weight: 500;
-  font-size: 2.5rem;
-  line-height: 1.1;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.info-cell__icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.information-block {
+  width: 100%;
   background-color: #ffffff;
-  background-image: url('@assets/images/card.jpg');
-  background-size: 55%;
-  background-position: center;
-  background-repeat: no-repeat;
-  flex-shrink: 0;
+  padding: 112px 0;
 }
 
-.info-cell__description {
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 1.2;
+.information-block__container {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  gap: 24px;
+}
+
+.information-block__header {
+  width: 282px;
+  color: #0f172a;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
   letter-spacing: 0;
   text-transform: uppercase;
-  max-width: 180px;
-  margin-bottom: 40px;
 }
 
-.info-cell__term {
-  font-weight: 400;
-  font-size:15px;
-  line-height: 1.1;
-  letter-spacing: 0;
-  max-width: 250px;
+.information-block__header-line {
+  margin: 0;
+}
+
+.information-block__cells {
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .information-block__container {
+    flex-direction: column;
+    gap: 24px;
+    margin-left: 40px;
+  }
 }
 
 @media (max-width: 900px) {
-  .info-cell {
+  .information-block {
+    padding: 80px 0;
+  }
+
+  .information-block__header {
+    width: 100%;
+  }
+
+  .information-block__container {
+    margin: auto;
     width: 80%;
-    max-width: 400px;
   }
 
-  .info-cell__description {
-    max-width: 80%;
-    margin-bottom: 2rem;
-  }
-
-  .info-cell__term {
-    max-width: 100%;
+  .information-block__cells {
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .info-cell {
-    width: 100%;
+  .information-block {
+    padding: 60px 0;
   }
 
-  .info-cell__description {
-    margin-bottom: 1.5rem;
+  .information-block__header {
+    font-size: 11px;
   }
 }
 </style>
+
