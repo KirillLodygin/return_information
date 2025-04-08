@@ -7,7 +7,7 @@
       "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"]
     },
-    "types": ["node"],
+    "types": ["node", "vite/client"],
 
     /* Linting */
     "strict": true,
@@ -16,5 +16,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "node_modules/@vue/runtime-core/dist/runtime-core.d.ts"
+  ]
 }
