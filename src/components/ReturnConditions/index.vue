@@ -41,14 +41,14 @@ import { RETURN_CONDITIONS } from '@/constants/projectInfo'
   width: 100%;
   margin: auto;
   grid-template-columns: 1fr 1fr 2fr;
-  border-top: 1px solid #0f172a;
+  border-top: 1px solid rgba(15, 23, 42, .2);
 }
 
 .conditions__title,
 .conditions__situation,
 .conditions__list {
   padding: 16px;
-  border-bottom: 1px solid #0f172a;
+  border-bottom: 1px solid rgba(15, 23, 42, .2);
 }
 
 .conditions__title {

@@ -90,6 +90,9 @@ const { isDesktop } = useBreakpoints()
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 @media (max-width: 768px) {

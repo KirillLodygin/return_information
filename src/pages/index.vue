@@ -17,6 +17,5 @@ import ReturnConditions from '@/components/ReturnConditions/index.vue'
 .page {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 1rem;
 }
 </style>
